@@ -24,6 +24,10 @@ var userSchema = new mongoose.Schema({
         type:String,
         default:"user"
     },
+    isBlocked: {
+        type:Boolean,
+        defalut: false
+    },
     cart: {
         type: Array,
         default: []

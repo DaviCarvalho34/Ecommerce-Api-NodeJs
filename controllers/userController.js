@@ -32,7 +32,7 @@ const loginUser = asyncHandler(async (req,res) => {
             token: generateToken(findUser?._id)
         });
     } else {
-        throw new Error("Invalid Credentials");
+        throw new Error("Invalid Credentials!");
     }
 
 });
@@ -97,5 +97,39 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 });
 
+const blockUser = asyncHandler(async (req, res) => {
 
-module.exports = { createUser, loginUser, getAllUser, getUser, deleteUser, updateUser };
+    const { id } = req.params;
+    
+    try {
+        const blockUser = await User.findByIdAndUpdate(id,{
+            isBlocked:true
+        }, { new: true }
+        );
+        res.json({ message: "user blocked" });
+
+    } catch (error) {
+        throw new Error(error);
+    }
+
+});
+
+const unblockUser = asyncHandler(async (req, res) => {
+
+    const { id } = req.params;
+    
+    try {
+        const unblockUser = await User.findByIdAndUpdate(id,{
+            isBlocked:false
+        }, { new: true }
+        );
+        res.json({ message: "user unblocked" });
+
+    } catch (error) {
+        throw new Error(error);
+    }
+
+});
+
+
+module.exports = { createUser, loginUser, getAllUser, getUser, deleteUser, updateUser, blockUser, unblockUser };
