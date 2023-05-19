@@ -150,6 +150,7 @@ const unblockUser = asyncHandler(async (req, res) => {
 
     const { id } = req.params;
     validateMongoDbId(id);
+    console.log('ok');
     
     try {
         const unblockUser = await User.findByIdAndUpdate(id,{
