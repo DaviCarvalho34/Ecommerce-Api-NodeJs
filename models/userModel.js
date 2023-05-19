@@ -38,6 +38,9 @@ var userSchema = new mongoose.Schema({
     wishList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Poduct" }],
     refreshToken: {
         type: String,
+    },
+    refreshToken: {
+        type: String,
     }
 }, { timestamps: true });
 
